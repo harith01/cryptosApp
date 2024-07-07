@@ -1,4 +1,5 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
+import './Navbar.css';
 
 const Navbar = () => {
     return (
@@ -8,9 +9,9 @@ const Navbar = () => {
                 CryptoApp
             </div>
             <ul className="nav-links">
-                <li>Homepage</li>
-                <li>News</li>
-                <li>Exchanges</li>
+                <li><Link className="links" to="/">Homepage</Link></li>
+                <li><Link className="links" to={"news"}>News</Link></li>
+                <li><Link className="links" to={"cryptos"}>Cryptos</Link></li>
             </ul>
         </nav>
         <Outlet />
