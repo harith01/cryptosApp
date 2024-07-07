@@ -1,0 +1,31 @@
+.card {
+    width: 150px;
+    border: 2px solid black;
+    padding: 1em 1em;
+    background-color: aqua;
+    transition: 1s;
+    border-radius: 20px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+}
+
+.card:hover {
+    background-color: aliceblue;
+    scale: 0.99;
+    transition: 1s;
+}
+
+.card-header {
+    /* border: 1px solid gray; */
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+
+.card-header img {
+    margin-right: 0.4em;
+}
+
+.card-details {
+    margin-top: 0.5rem;
+}
