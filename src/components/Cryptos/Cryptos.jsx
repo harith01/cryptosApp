@@ -4,7 +4,8 @@ import CryptoCard from "./CryptoCard";
 import "./cryptos.css";
 
 
-const Cryptos = () => {
+const Cryptos = ({ simplified }) => {
+  const limit = simplified ? 10: 50;
   const [coins, setCoins] = useState(null)
   const options = {
     method: 'GET',
@@ -15,7 +16,7 @@ const Cryptos = () => {
       tiers: '1',
       orderBy: 'marketCap',
       orderDirection: 'desc',
-      limit: '50',
+      limit: limit,
       offset: '0'
     },
     headers: {
