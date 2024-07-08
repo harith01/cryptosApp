@@ -1,7 +1,37 @@
 .cards-container {
     display: grid;
-    width: 960px;
     grid-template-columns: repeat(6, 1fr);
     gap: 20px;
     padding: 1em 2em;
+}
+
+@media (max-width: 375px) {
+    .cards-container {
+        grid-template-columns: 1fr;
+        
+    }
+}
+
+@media (max-width: 575px) {
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .cards-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .cards-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .cards-container {
+        grid-template-columns: repeat(5, 1fr);
+    }
 }
