@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const CryptoCard = ({ coin }) => {
     return (
             <div className="card">
-                <Link to={coin.uuid}>
+                <Link to={`/coin/${coin.uuid}`}>
                     <div className="card-header">
                         <img src={coin.iconUrl} alt="BTC" width={25} height={25}/>
                         <span className="symbol">{coin.symbol}</span>

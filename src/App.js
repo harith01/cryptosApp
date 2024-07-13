@@ -7,13 +7,15 @@ import { Route, Routes } from 'react-router-dom';
 import Cryptos from './components/Cryptos/Cryptos';
 
 
+
 function App() {
+  
   return (
     <Routes>
       <Route path='/' element={<Navbar />} >
         <Route index element={<Home />} />
         <Route path='news' element={<News />} />
-        <Route path='coins/:id' element={<CoinDetails />} />
+        <Route path='coin/:uuid' element={<CoinDetails />} />
         <Route path='/cryptos' element={<Cryptos />} />
       </Route>
     </Routes>
