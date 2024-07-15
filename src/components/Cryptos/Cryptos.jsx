@@ -29,7 +29,7 @@ const Cryptos = ({ simplified }) => {
     const fetchCoins = async () => {
       try {
         const response = await axios.request(options);
-        console.log(response.data.data.coins);
+        // console.log(response.data.data.coins);
         setCoins(response.data.data.coins);
       } catch (error) {
         console.error(error);

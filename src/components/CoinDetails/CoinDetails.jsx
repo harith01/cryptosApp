@@ -3,11 +3,15 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./coinDetails.css";
 import millify from "millify";
+import LineChart from "./LineChart";
 
 
 const CoinDetails = () => {
     const { uuid }  = useParams()
     const [coin, setCoin] = useState()
+    const [coinHistory, setCoinHistory] = useState([])
+
+
     const options = {
         method: 'GET',
         url: `https://coinranking1.p.rapidapi.com/coin/${uuid}`,
@@ -33,6 +37,33 @@ const CoinDetails = () => {
         }
         fetchCoin()
     }, [])
+
+    const historyOptions = {
+      method: 'GET',
+      url: `https://coinranking1.p.rapidapi.com/coin/${uuid}/history`,
+      params: {
+          // referenceCurrencyUuid: 'yhjMzLPhuIDl',
+          timePeriod: '24h'
+      },
+      headers: {
+          'x-rapidapi-key': process.env.REACT_APP_API_KEY,
+          'x-rapidapi-host': 'coinranking1.p.rapidapi.com'
+      }
+    };
+
+    useEffect(() => {
+      const fetchCoinhistory = async () => {
+          try {
+              const response = await axios.request(historyOptions)
+              // console.log(response.data.data.history);
+              setCoinHistory(response?.data)
+          } catch (error) {
+              console.log(error)
+          }
+      }
+      fetchCoinhistory()
+    }, [])
+
 
     const stats = [
       { title: 'Price to USD', value: `$ ${coin?.price && millify(coin?.price)}` },
@@ -60,6 +91,9 @@ const CoinDetails = () => {
                 <div className="coin-desc">
                   <p>{coin?.description}</p>
                 </div>
+            </section>
+            <section>
+              <LineChart coinHistory={coinHistory}/>
             </section>
             <section className="coin-stats">
               <div>
