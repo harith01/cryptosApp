@@ -1,5 +1,6 @@
 import { Line } from "react-chartjs-2";
 
+
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -11,6 +12,7 @@ import {
     PointElement,
     LineElement,
 } from 'chart.js';
+
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -24,24 +26,15 @@ ChartJS.register(
 
 
 const LineChart = ({ coinHistory }) => {
-    
-
-
-    
-
-    console.log(coinHistory?.data?.history[0].price)
     const price = [];
     const timestamp = [];
-
-   
+    console.log(coinHistory)
     for (let i = 0; i < coinHistory?.data?.history?.length; i++) {
         price.push(coinHistory?.data?.history[i]?.price)
         timestamp.push(new Date(coinHistory?.data?.history[i].timestamp).toLocaleDateString())
     }
 
-    console.log(timestamp)
-
-    const data = {
+    const chart_data = {
         labels: timestamp,
         datasets: [
             {
@@ -69,7 +62,7 @@ const LineChart = ({ coinHistory }) => {
     return ( 
         <>
             <h1>Coin History</h1>
-            <Line data={data} options={chart_options}/>
+            <Line data={chart_data} options={chart_options}/>
         </>
     );
 }

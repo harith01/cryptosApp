@@ -4,65 +4,22 @@ import axios from "axios";
 import "./coinDetails.css";
 import millify from "millify";
 import LineChart from "./LineChart";
+import { useGetCoinHistoryQuery, useGetCoinQuery } from "../../services/cryptoApi";
 
 
 const CoinDetails = () => {
     const { uuid }  = useParams()
     const [coin, setCoin] = useState()
     const [coinHistory, setCoinHistory] = useState([])
+    const { data, isLoading } = useGetCoinQuery(uuid);
+    const { data: coinHistoryData, isLoadingHistory } = useGetCoinHistoryQuery(uuid);
 
+    console.log(coinHistoryData)
+    useEffect(() => (
+      setCoin(data?.data?.coin)
+    ))
 
-    const options = {
-        method: 'GET',
-        url: `https://coinranking1.p.rapidapi.com/coin/${uuid}`,
-        params: {
-            referenceCurrencyUuid: 'yhjMzLPhuIDl',
-            timePeriod: '24h'
-        },
-        headers: {
-          'x-rapidapi-key': process.env.REACT_APP_API_KEY,
-          'x-rapidapi-host': 'coinranking1.p.rapidapi.com'
-        }
-    };
-
-    useEffect(() => {
-        const fetchCoin = async () => {
-          try {
-            const response = await axios.request(options);
-            console.log(response.data.data.coin);
-            setCoin(response.data.data.coin);
-          } catch (error) {
-            console.error(error);
-          }
-        }
-        fetchCoin()
-    }, [])
-
-    const historyOptions = {
-      method: 'GET',
-      url: `https://coinranking1.p.rapidapi.com/coin/${uuid}/history`,
-      params: {
-          // referenceCurrencyUuid: 'yhjMzLPhuIDl',
-          timePeriod: '24h'
-      },
-      headers: {
-          'x-rapidapi-key': process.env.REACT_APP_API_KEY,
-          'x-rapidapi-host': 'coinranking1.p.rapidapi.com'
-      }
-    };
-
-    useEffect(() => {
-      const fetchCoinhistory = async () => {
-          try {
-              const response = await axios.request(historyOptions)
-              // console.log(response.data.data.history);
-              setCoinHistory(response?.data)
-          } catch (error) {
-              console.log(error)
-          }
-      }
-      fetchCoinhistory()
-    }, [])
+    if (isLoading || isLoadingHistory) return 'Loading...'
 
 
     const stats = [
@@ -93,7 +50,7 @@ const CoinDetails = () => {
                 </div>
             </section>
             <section>
-              <LineChart coinHistory={coinHistory}/>
+              <LineChart coinHistory={coinHistoryData}/>
             </section>
             <section className="coin-stats">
               <div>
@@ -102,8 +59,8 @@ const CoinDetails = () => {
                   <p>An Overview Showing the Stats of {coin?.name}</p>
                 </div>
                 <table>
-                  {stats?.map((stat) => (
-                    <tr>
+                  {stats?.map((stat, i) => (
+                    <tr key={i}>
                       <td>{stat.title}</td>
                       <td>{stat.value}</td>
                     </tr>
@@ -116,8 +73,8 @@ const CoinDetails = () => {
                   <p>An Overview Showing the Stats of all Cryptos</p>
                 </div>
                 <table>
-                  {genericStats?.map((stat) => (
-                    <tr>
+                  {genericStats?.map((stat, i) => (
+                    <tr key={i}>
                       <td>{stat.title}</td>
                       <td>{stat.value}</td>
                     </tr>
