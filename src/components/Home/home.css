@@ -1,0 +1,14 @@
+.global-stats {
+    padding: 4em 1em;
+    background-color: azure;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
+}
+
+.stats p {
+    padding: 1em 0;
+    font-weight: 500;
+}

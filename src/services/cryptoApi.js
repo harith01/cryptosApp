@@ -14,7 +14,7 @@ export const cryptoApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl }),
     endpoints: (builder) => ({
         getCryptos: builder.query({
-            query: (limit) => createRequest(`/coins?limit=${limit}`)
+            query: () => createRequest(`/coins`)
         }),
         getCoin: builder.query({
             query: (uuid) => createRequest(`/coin/${uuid}`)

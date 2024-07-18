@@ -5,12 +5,14 @@ import CoinDetails from './components/CoinDetails/CoinDetails';
 import Home from './components/Home/Home';
 import { Route, Routes } from 'react-router-dom';
 import Cryptos from './components/Cryptos/Cryptos';
+import Footer from './components/Footer/Footer';
 
 
 
 function App() {
   
   return (
+    <>
     <Routes>
       <Route path='/' element={<Navbar />} >
         <Route index element={<Home />} />
@@ -19,6 +21,8 @@ function App() {
         <Route path='/cryptos' element={<Cryptos />} />
       </Route>
     </Routes>
+    <Footer />
+    </>
   );
 }
 

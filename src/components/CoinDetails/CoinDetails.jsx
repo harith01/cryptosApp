@@ -14,7 +14,6 @@ const CoinDetails = () => {
     const { data, isLoading } = useGetCoinQuery(uuid);
     const { data: coinHistoryData, isLoadingHistory } = useGetCoinHistoryQuery(uuid);
 
-    console.log(coinHistoryData)
     useEffect(() => (
       setCoin(data?.data?.coin)
     ))
