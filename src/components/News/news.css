@@ -1,6 +1,22 @@
 .news-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-auto-columns: max-content;
     gap: 2rem;
-    padding: 1em 2em;
+    padding: 1em;
+    color: black;
+}
+
+.page-title {
+    padding: 1em;
+}
+
+.select-section {
+    text-align: center;
+}
+
+select {
+    padding: 0.5rem;
+    background-color: aqua;
+    width: 15rem;
 }
