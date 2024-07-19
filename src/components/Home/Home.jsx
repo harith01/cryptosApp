@@ -1,7 +1,6 @@
 import Cryptos from "../Cryptos/Cryptos";
 import News from "../News/News";
 import { useGetCryptosQuery } from "../../services/cryptoApi";
-import { useState, useEffect } from "react";
 import millify from "millify";
 import './home.css';
 import { Link } from "react-router-dom";
@@ -24,12 +23,14 @@ const Home = () => {
                     <p>Totla Markets: {millify(stats.totalMarkets)}</p>
                 </div>
             </div>
-            <div className="cryptos">
-                <p>Here are the top 10 Cryptocurrencies. <Link to='/cryptos'>See more</Link></p>
+            <div className="section">
+                <h2>Here are the top 10 Cryptocurrencies. <Link to='/cryptos'>See more ...</Link></h2>
                 <Cryptos simplified coins={data?.data?.coins} />
             </div>
-            <h2>Here are the Top 10 news</h2>
-            <News simplified />
+            <div className="section">
+                <h2>Here are the Top 10 news. <Link to='/news'>See more ...</Link></h2>
+                <News simplified />
+            </div>
         </>
      );
 }
