@@ -6,15 +6,17 @@ import { useState, useEffect } from 'react';
 
 const Cryptos = ({ simplified }) => {
   const { data, isLoading } = useGetCryptosQuery();
-  const [coins, setCoins] = useState(data?.data?.coins);
-  const [search, setSearch] = useState()
+  const [coins, setCoins] = useState([]);
+  const [search, setSearch] = useState('')
   const limit = simplified ? 10: 50;
   
+  console.log(data?.data?.coins)
 
   useEffect(() => {
-    const filteredCoins = data?.data?.coins.filter((coin) => coin?.name.toLowerCase().includes(search.toLowerCase()));
+    const filteredCoins = data?.data?.coins.filter((coin) => coin.name.toLowerCase().includes(search.toLowerCase()));
     setCoins(filteredCoins);
-  }, [coins, search])
+  }, [data, search])
+  
   if (isLoading) return 'Loading...';
   return ( 
         <>
