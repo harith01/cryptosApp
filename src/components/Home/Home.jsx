@@ -29,7 +29,7 @@ const Home = () => {
             </div>
             <div className="section">
                 <h2>Here are the Top 10 news. <Link to='/news'>See more ...</Link></h2>
-                <News simplified />
+                {/* <News simplified /> */}
             </div>
         </>
      );

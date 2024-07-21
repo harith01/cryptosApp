@@ -11,7 +11,13 @@ ul {
 }
 
 .logo {
-    
+    font-size:x-large;
+    font-weight: 600;
+    transition: 1s;
+}
+
+.logo:hover {
+    scale: 1.1;
 }
 
 .nav-links {
@@ -22,15 +28,18 @@ ul {
 .nav-links li {
     margin-left: 1em;
     text-decoration: none;
-    
+    display: inline-block;
     padding: 0.5rem 0.3rem;
     border-radius: 5%;
     font-size: large;
+    position: relative;
+    transition: 1s;
 }
 
 .nav-links li:hover {
-    border-bottom: 0.1em solid black;
+    scale: 1.1;
 }
+
 
 .links {
     text-decoration: none;
