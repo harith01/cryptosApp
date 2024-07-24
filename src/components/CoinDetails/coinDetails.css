@@ -41,6 +41,14 @@ td {
     /* border-bottom: 2px solid black; */
 }
 
+.chart-section {
+    padding: 2rem 0;
+}
+
+.chart-title {
+    padding: 2rem 0;
+}
+
 @media (min-width: 960px) {
     .coin-stats {
         display: flex;

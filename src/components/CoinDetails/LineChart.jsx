@@ -49,19 +49,20 @@ const LineChart = ({ coinHistory }) => {
 
     const chart_options = {
         scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true,
-              },
-            },
-          ],
+          y: {
+            display:true,
+            beginAtzero: false,
+          },
+          x: {
+            display: false,
+            beginAtzero: true
+          }
         },
     };
 
     return ( 
         <>
-            <h1>Coin History</h1>
+            <h1 className="chart-title">Coin History Chart</h1>
             <Line data={chart_data} options={chart_options}/>
         </>
     );

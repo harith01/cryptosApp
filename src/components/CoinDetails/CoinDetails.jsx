@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import "./coinDetails.css";
 import millify from "millify";
 import LineChart from "./LineChart";
@@ -8,11 +7,11 @@ import { useGetCoinHistoryQuery, useGetCoinQuery } from "../../services/cryptoAp
 
 
 const CoinDetails = () => {
-    const { uuid }  = useParams()
-    const [coin, setCoin] = useState()
-    const [coinHistory, setCoinHistory] = useState([])
+    const { uuid }  = useParams();
+    const [coin, setCoin] = useState();
+    const [timePeriod, setTimePeriod] = useState('24h');
     const { data, isLoading } = useGetCoinQuery(uuid);
-    const { data: coinHistoryData, isLoadingHistory } = useGetCoinHistoryQuery(uuid);
+    const { data: coinHistoryData, isLoadingHistory } = useGetCoinHistoryQuery({ uuid, timePeriod });
 
     useEffect(() => (
       setCoin(data?.data?.coin)
@@ -20,11 +19,11 @@ const CoinDetails = () => {
 
     if (isLoading || isLoadingHistory) return 'Loading...'
 
-
+    const handleChange = (e) => setTimePeriod(e.target.value);
+    console.log(coinHistoryData)
     const stats = [
       { title: 'Price to USD', value: `$ ${coin?.price && millify(coin?.price)}` },
       { title: 'Rank', value: coin?.rank},
-      { title: '24h Volume', value: `$ ${coin?.volume && millify(coin?.volume)}`},
       { title: 'Market Cap', value: `$ ${coin?.marketCap && millify(coin?.marketCap)}`},
       { title: 'All-time-high(daily avg.)', value: `$ ${coin?.allTimeHigh?.price && millify(coin?.allTimeHigh?.price)}`},
     ];
@@ -48,7 +47,17 @@ const CoinDetails = () => {
                   <p>{coin?.description}</p>
                 </div>
             </section>
-            <section>
+            <section className="chart-section">
+            <select value={timePeriod} onChange={handleChange}>
+                    <option value="3h">3 hours</option>
+                    <option value="24h">24 hours</option>
+                    <option value="7d">7 days</option>
+                    <option value="30d">30 days</option>
+                    <option value="3m">3 months</option>
+                    <option value="1y">1 year</option>
+                    <option value="3y">3 years</option>
+                    <option value="5y">5 years</option>
+                </select>
               <LineChart coinHistory={coinHistoryData}/>
             </section>
             <section className="coin-stats">

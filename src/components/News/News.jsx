@@ -28,7 +28,7 @@ const News = ({ simplified }) => {
                     <option value="/coindesk">Coin Desk</option>
                     <option value="/bitcoinist">BitcoinIst</option>
                     <option value="/theguardian">The Guardian</option>
-             </select>
+                </select>
              </div></>)
              }
              <div className="news-container">
